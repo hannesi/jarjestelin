@@ -1,20 +1,22 @@
 import { useState } from "react"
 
-const Paragraph = ({ text, index }) => {
+const Paragraph = ({ text, index, paragraphFunctions }) => {
     const [editing, setEditing] = useState(false)
-    const [localText, setLocalText] = useState(text)
     const editLocalText = (newText) => {
-        setLocalText(newText)
+        paragraphFunctions.edit(index, newText)
         setEditing(false)
     }
     return (
         <div>
             { index }:
             { editing && 
-            <ParagraphTextEditor text={localText} onSubmit={editLocalText} />
+            <ParagraphTextEditor text={text} onSubmit={editLocalText} />
             ||
-                <p onClick={() => setEditing(true)}>{localText}</p>
+                <p onClick={() => setEditing(true)}>{text}</p>
             }
+            { index !== 0 && <button onClick={() => paragraphFunctions.mergeUp(index)}>Liitä ylläolevaan</button> }
+            { index !== 0 && <button onClick={() => paragraphFunctions.moveUp(index)}>Siirrä ylöspäin</button> }
+            <button onClick={() => paragraphFunctions.moveDown(index)}>Siirrä alaspäin</button>
         </div>
     )
 }
