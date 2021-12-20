@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import RearrangeArea from './components/RearrangeArea';
 
+
 function App() {
   // value of the textarea used for initial input
   const [input, setInput] = useState('')
@@ -8,7 +9,11 @@ function App() {
   const [paragraphs, setParagraphs] = useState([])
   // submit function for initial input 
   const handleSubmit = () => {
-    setParagraphs(input.split('\n').map(s => s.trim()))
+    setParagraphs(input.split('\n').map(s => s.trim()).filter(s => s.length !== 0))
+  }
+  // copy paragraphs to clipboard
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(paragraphs.join('\n'))
   }
   // for checking whether the user really wants to reset paragraphs
   const [askingConfirmation, setAskingConfirmation] = useState(false)
@@ -90,6 +95,7 @@ function App() {
         <button onClick={() => setAskingConfirmation(true)}>Palaa alkuun</button> 
       || 
         <button onClick={resetParagraphs}>Olen varma</button>}
+      <button onClick={copyToClipboard}>Kopioi leikepöydälle</button>
       <RearrangeArea paragraphs={paragraphs} paragraphFunctions={paragraphFunctions} />
     </div>
   );

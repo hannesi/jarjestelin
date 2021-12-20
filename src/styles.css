@@ -1,0 +1,27 @@
+.paragraph-box {
+    background-color: cornflowerblue;
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+}
+
+.pb-side {
+    font-size: 2rem;
+    text-align: center;
+    color: cornsilk;
+}
+
+.pb-side-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.pb-text {
+    background-color: cornsilk;
+    padding: 0 1rem 0 1rem;
+}
+
+textarea {
+    resize: none;
+    width: 100%
+}
