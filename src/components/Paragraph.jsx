@@ -1,19 +1,22 @@
 import { useState } from "react"
 
 const Paragraph = ({ text, index, paragraphFunctions }) => {
-    const [editing, setEditing] = useState(false)
+    // whether edit mode is active or not
+    const [editModeActive, setEditModeActive] = useState(false)
+    // to be called when editing is submitted
     const editLocalText = (newText) => {
         paragraphFunctions.edit(index, newText)
-        setEditing(false)
+        setEditModeActive(false)
     }
     return (
         <div>
             { index }:
-            { editing && 
+            { editModeActive && 
             <ParagraphTextEditor text={text} onSubmit={editLocalText} />
             ||
-                <p onClick={() => setEditing(true)}>{text}</p>
+                <p>{text}</p>
             }
+            <button onClick={() => setEditModeActive(true)}>Muokkaa</button>
             { index !== 0 && <button onClick={() => paragraphFunctions.mergeUp(index)}>Liitä ylläolevaan</button> }
             { index !== 0 && <button onClick={() => paragraphFunctions.moveUp(index)}>Siirrä ylöspäin</button> }
             <button onClick={() => paragraphFunctions.moveDown(index)}>Siirrä alaspäin</button>
