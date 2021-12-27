@@ -21,6 +21,10 @@
     padding: 0 1rem 0 1rem;
 }
 
+.p-editor {
+    min-height: 100vh;
+}
+
 textarea {
     resize: none;
     width: 100%

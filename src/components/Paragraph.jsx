@@ -8,6 +8,7 @@ const Paragraph = ({ text, index, paragraphFunctions }) => {
         paragraphFunctions.edit(index, newText)
         setEditModeActive(false)
     }
+    // TODO: scroll to top of the textarea when it's opened
     return (
         <div className='paragraph-box'>
             <div className='pb-side'>
@@ -36,6 +37,7 @@ const ParagraphTextEditor = ({ text, onSubmit, onCancel }) => {
         <div>
             <div>
                 <textarea 
+                    className='p-editor'
                     value={textAreaText}
                     onChange={ev => setTextAreaText(ev.target.value)}
                 />

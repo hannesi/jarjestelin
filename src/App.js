@@ -91,17 +91,16 @@ function App() {
         <button onClick={() => setInput('')}>Tyhjennä</button>
         <button onClick={handleSubmit}>Pilko kappaleiksi</button>
         </div>
-      ||  <div>
-            { !askingConfirmation && 
-              <button onClick={() => setAskingConfirmation(true)}>Palaa alkuun</button> 
-            || 
-              <button onClick={resetParagraphs}>Olen varma</button>
+      || <div>
+            { 
+            !askingConfirmation && <button onClick={() => setAskingConfirmation(true)}>Palaa alkuun</button> 
+            || <button onClick={resetParagraphs}>Olen varma</button>
             }
             <button onClick={copyToClipboard}>Kopioi leikepöydälle</button>
           </div> }
       <RearrangeArea paragraphs={paragraphs} paragraphFunctions={paragraphFunctions} />
     </div>
-  );
+  )
 }
 
 export default App;
